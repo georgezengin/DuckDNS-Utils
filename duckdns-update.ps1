@@ -185,6 +185,18 @@ If ($Help) {
 	Exit 0
 }
 
+if (-not $Domains) {
+	Write-Log "Error: The -Domains parameter is required." -Color "Red"
+	Write-EventLogEntry -EntryType "Error" -EventId 1000
+	Exit 1
+}
+
+if (-not $Token) {
+	Write-Log "Error: The -Token parameter is required." -Color "Red"
+	Write-EventLogEntry -EntryType "Error" -EventId 1000
+	Exit 1
+}
+
 # Auto-detect IP if not provided
 if (-not $IP) {
 	try {
